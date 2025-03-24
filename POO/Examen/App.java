@@ -26,7 +26,7 @@ public class App {
                 case 3 -> restaurante.registrarPedido();
                 case 4 -> restaurante.menuModificarPedido();
                 case 5 -> {
-                    //modificarBorrarPlato();
+                    restaurante.modificarPlatoCarta();
                 }
                 case 6 -> {
                     //guardarDatos();
