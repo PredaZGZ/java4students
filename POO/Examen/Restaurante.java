@@ -156,6 +156,78 @@ public class Restaurante {
         return null;
     }
 
+    public void modificarPlatoCarta() {
+        Plato cartaPlatos = this.cartaPlatos;
+        int opcion;
+        do {        
+            System.out.println("Que quieres hacer?:");
+            System.out.println("1. Modificar plato.");
+            System.out.println("2. Eliminar plato.");
+            
+            opcion = sc.nextInt();
+        } while (opcion != 3);
+
+        switch (opcion) {
+            case 1 -> {
+                System.out.println("Introduce un código de plato: ");
+                String codigo = sc.next();
+                for (Plato plato : this.cartaPlatos) {
+                    if (codigo == plato.getCodigo()) {
+                        int subopcion;
+
+                        do {        
+                            System.out.println("Que quieres hacer?:");
+                            System.out.println("1. Modificar código del plato.");
+                            System.out.println("2. Modificar nombre del plato.");
+                            System.out.println("3. Modificar precio del plato.");
+                            
+                            
+                                subopcion = sc.nextInt();
+                        } while (subopcion != 4);
+
+                        switch (subopcion) {
+                            case 1 -> {
+                                System.out.println("Introduce el nuevo código: ");
+                                String nuevoCodigo = sc.next();
+                                plato.setCodigo() = nuevoCodigo;
+                            }
+                            case 2 -> {
+                                System.out.println("Introduce el nuevo nombre: ");
+                                String nuevoNombre = sc.next();
+                                plato.setNombre() = nuevoNombre;
+                            }
+                            case 3 -> {
+                                System.out.println("Introduce el nuevo precio: ");
+                                int nuevoPrecio = sc.nextInt();
+                                plato.setPrecio() = nuevoPrecio;
+                            }
+                            
+
+                    }
+                }
+                System.out.println("Introduce un número válido");
+            }
+            case 2 -> { 
+                if (!this.cartaPlatos.isEmpty()) {
+                    do {
+                        System.out.println("Introduce un código de plato: ");
+                        String codigo = sc.next();
+                        for (Plato plato : this.cartaPlatos) {
+                            if (codigo == plato.getCodigo()) {
+                                this.cartaPlatos.remove(plato);
+                                System.out.println("Plato borrado correctamente");
+                                
+                            }
+                        }
+                        System.out.println("Introduce un número válido");
+                    } while (true);
+        
+                }                
+            }
+        }
+
+    }
+
     public void menuModificarPedido() {
         Pedido pedido = this.getPedidoNumeroMesa();
         int opcion;
