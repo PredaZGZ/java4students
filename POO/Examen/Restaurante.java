@@ -207,4 +207,51 @@ public class Restaurante {
 
     
 
+    public void modificarBorrarPlato(){
+        Plato plato = this.platoByCodigo();
+        int opcion;
+        do {        
+            System.out.println("Que quieres hacer?:");
+            System.out.println("1. Modificar Plato.");
+            System.out.println("2. Borrar Plato.");
+            System.out.println("3. Salir");
+            System.out.println("Introduce una opción: ");
+            opcion = sc.nextInt();
+            sc.nextLine();
+        
+        } while (opcion != 3);
+
+        switch (opcion) {
+            case 1 -> {
+                do {
+                    System.out.println("¿Que quieres modificar?");
+                    System.out.println("1. Nombre");
+                    System.out.println("2. Precio");
+                    System.out.println("3. Salir");
+                    opcion = sc.nextInt();
+                    sc.nextLine();
+                }while (opcion != 3);
+                switch (opcion) {
+                    case 1 -> {
+                        String nombrePlato;
+                        System.out.println("Introduce un nuevo nombre: ");
+                        nombrePlato = sc.nextLine();
+                        sc.next();
+                        plato.setNombrePlato(nombrePlato);
+                    }
+                    case 2 -> {
+                        System.out.println("Introduce un nuevo precio: ");
+                        plato.setPrecioPlato(sc.nextDouble());
+                    }
+                }
+            }
+            case 2 -> {
+                this.cartaPlatos.remove(plato);
+                System.out.println("Plato borrado correctamente");
+            }
+        }
+    }
+    
+    
+
 }
