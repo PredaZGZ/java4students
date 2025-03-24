@@ -205,6 +205,55 @@ public class Restaurante {
         }
     }
 
-    
+    public void modificarBorrarPlato() {
+        System.out.println("Que desea hacer?");
+        System.out.println("1. Borrar plato");
+        System.out.println("2. Modificar plato");
+        int opcion = sc.nextInt();
+
+        switch(opcion){
+            case 1: 
+            System.out.println("Introduce el codigo del plato");
+            String codigo= sc.nextLine();
+            Plato platoEliminar = buscarPlatoPorCodigo(codigo);
+            if(platoEliminar != null){
+                cartaPlatos.remove(platoEliminar);
+                System.out.println("Plato eliminado correctamente.");
+            }else{
+                System.out.println("Plato no encontrado.");
+            }
+            break;
+
+            case 2:
+            System.out.println("Introduce el codigo del plato a modificar");
+            String codigoModificar = sc.nextLine();
+            Plato platoModificar = buscarPlatoPorCodigo(codigoModificar);
+
+            if (platoModificar != null) {
+                System.out.println("Introduce el nuevo nombre del plato:");
+                String nuevoNombre = sc.nextLine();
+
+                System.out.println("Introduce el nuevo precio del plato:");
+                double nuevoPrecio = sc.nextDouble();
+
+                platoModificar.setNombre(nuevoNombre);
+                platoModificar.setPrecio(nuevoPrecio);
+
+                System.out.println("Plato modificado correctamente.");
+            } else {
+                System.out.println("Plato no encontrado.");
+            }
+            break;
+        }         
+    }
+
+    private Plato buscarPlatoPorCodigo(String codigo) {
+        for (Plato plato : cartaPlatos) {
+            if (plato.getCodigo().equalsIgnoreCase(codigo)) {
+                return plato;
+            }
+        }
+        return null;
+    }
 
 }
