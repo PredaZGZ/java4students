@@ -156,6 +156,65 @@ public class Restaurante {
         return null;
     }
 
+    public void modificarBorrarPlato(){
+
+        String codigoPlato;
+        boolean seguir = true;
+        Plato platoEncontrado = null;
+
+        System.out.println("1. Borrar Plato");
+        System.out.println("2. Modificar plato");
+        System.out.println("3. Salir");
+        int opcion = sc.nextInt();
+        sc.nextLine();
+
+        do{
+            System.out.println("Introduce el codigo del plato");
+            codigoPlato = sc.nextLine();
+
+            for(Plato plato : this.cartaPlatos){
+                if(plato.getCodigo().equals(codigoPlato)){
+                    platoEncontrado = plato;
+                    seguir = false;
+                    break;
+                }
+            }
+            System.out.println("No se ha encontrado el plato");
+
+        }while(seguir);
+        
+
+        switch(opcion){
+            case 1-> this.cartaPlatos.remove(platoEncontrado);
+            case 2-> {
+
+                System.out.println("Que quieres hacer?");
+                System.out.println("1. Modificar el nombre");
+                System.out.println("2. Modificar el precio");
+                int opcionModificar = sc.nextInt();
+                sc.nextLine();
+
+                switch(opcionModificar){
+                    case 1->{
+                        System.out.println("Introduce el nuevo nombre");
+                        String nuevoNombre = sc.nextLine();
+    
+                        platoEncontrado.setNombre(nuevoNombre);
+                        System.out.println("El nombre plato ha sido modificado con exito");
+                    }
+                    case 2->{
+                        System.out.println("Introduce el nuevo precio");
+                        double nuevoPrecio = sc.nextDouble();
+
+                        platoEncontrado.setPrecio(nuevoPrecio);
+                        System.out.println("El precio del plato ha sido modificado con exito");
+                    }
+                }
+                
+            }
+        }
+    }
+
     public void menuModificarPedido() {
         Pedido pedido = this.getPedidoNumeroMesa();
         int opcion;
@@ -204,7 +263,5 @@ public class Restaurante {
             }
         }
     }
-
-    
 
 }
