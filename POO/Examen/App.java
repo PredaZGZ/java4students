@@ -6,7 +6,7 @@ public class App {
         int opcion;
 
         Restaurante restaurante = new Restaurante();
-
+        //CAMBIO
         do {
             System.out.println("\nMenú de Gestión de Restaurante");
             System.out.println("1. Registrar Mesa");
