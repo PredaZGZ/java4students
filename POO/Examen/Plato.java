@@ -1,5 +1,8 @@
+import java.util.Scanner;
+
 public class Plato {
-    
+    Scanner sc = new Scanner(System.in);
+
     private String codigo;
     private String nombre;
     private Double precio;
@@ -12,7 +15,19 @@ public class Plato {
 
     }
 
-    public Double getPrecio() {return this.precio;}
-    public String getCodigo() {return this.codigo;}
+    public Double getPrecio() {
+        return this.precio;
+    }
 
+    public String getCodigo() {
+        return this.codigo;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
 }

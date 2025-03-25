@@ -25,22 +25,21 @@ public class App {
                 case 2 -> restaurante.registrarPlatoCarta();
                 case 3 -> restaurante.registrarPedido();
                 case 4 -> restaurante.menuModificarPedido();
-                case 5 -> {
-                    //modificarBorrarPlato();
-                }
+                case 5 -> restaurante.modificarBorrarPlato();
+
                 case 6 -> {
-                    //guardarDatos();
+                    // guardarDatos();
                 }
                 case 7 -> {
-                    //cargarDatos();
+                    // cargarDatos();
                 }
                 case 8 -> {
-                    //guardarDatos();
+                    // guardarDatos();
                     System.out.println("Saliendo del programa...");
                 }
                 default -> System.out.println("Opción no válida, intente nuevamente.");
             }
-            
+
         } while (opcion != 8);
     }
 }
