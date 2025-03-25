@@ -157,7 +157,6 @@ public class Restaurante {
     }
 
     public void modificarPlatoCarta() {
-        Plato cartaPlatos = this.cartaPlatos;
         int opcion;
         do {        
             System.out.println("Que quieres hacer?:");
@@ -172,7 +171,7 @@ public class Restaurante {
                 System.out.println("Introduce un código de plato: ");
                 String codigo = sc.next();
                 for (Plato plato : this.cartaPlatos) {
-                    if (codigo == plato.getCodigo()) {
+                    if (codigo.equals(plato.getCodigo())) {
                         int subopcion;
 
                         do {        
@@ -182,30 +181,29 @@ public class Restaurante {
                             System.out.println("3. Modificar precio del plato.");
                             
                             
-                                subopcion = sc.nextInt();
+                            subopcion = sc.nextInt();
                         } while (subopcion != 4);
 
                         switch (subopcion) {
                             case 1 -> {
                                 System.out.println("Introduce el nuevo código: ");
                                 String nuevoCodigo = sc.next();
-                                plato.setCodigo() = nuevoCodigo;
+                                plato.setCodigo(nuevoCodigo);
                             }
                             case 2 -> {
                                 System.out.println("Introduce el nuevo nombre: ");
                                 String nuevoNombre = sc.next();
-                                plato.setNombre() = nuevoNombre;
+                                plato.setNombre(nuevoNombre);
                             }
                             case 3 -> {
                                 System.out.println("Introduce el nuevo precio: ");
-                                int nuevoPrecio = sc.nextInt();
-                                plato.setPrecio() = nuevoPrecio;
-                            }
-                            
-
+                                double nuevoPrecio = sc.nextDouble();
+                                plato.setPrecio(nuevoPrecio);
+                            }   
+                        }
                     }
+                    System.out.println("Introduce un número válido");
                 }
-                System.out.println("Introduce un número válido");
             }
             case 2 -> { 
                 if (!this.cartaPlatos.isEmpty()) {
@@ -213,7 +211,7 @@ public class Restaurante {
                         System.out.println("Introduce un código de plato: ");
                         String codigo = sc.next();
                         for (Plato plato : this.cartaPlatos) {
-                            if (codigo == plato.getCodigo()) {
+                            if (codigo.equals(plato.getCodigo())) {
                                 this.cartaPlatos.remove(plato);
                                 System.out.println("Plato borrado correctamente");
                                 
