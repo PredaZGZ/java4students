@@ -15,4 +15,6 @@ public class Plato {
     public Double getPrecio() {return this.precio;}
     public String getCodigo() {return this.codigo;}
 
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setPrecio(Double precio) { this.precio = precio; }
 }
