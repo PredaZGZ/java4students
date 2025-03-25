@@ -1,3 +1,4 @@
+import java.rmi.server.RemoteServer;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -204,7 +205,68 @@ public class Restaurante {
             }
         }
     }
-
     
+    public void modificarBorrarPlato(){
+        int opcion;
+        Plato platoFinal=null;
+        boolean condicion = false;
 
+        System.out.println("Escribe el código del plato");
+        String codigo = sc.next();
+            
+
+            do{
+                for (Plato plato : this.cartaPlatos){
+                    if (plato.getCodigo().equals(codigo)){
+
+                        platoFinal = plato;
+                        condicion = true;
+                    }else {
+                        System.out.println("El código no existe, introduce uno nuevo");
+                    }
+                }
+            }while (condicion);
+
+            do{
+                System.out.println("Qué quieres hacer?");
+                System.out.println("1. Modificar plato");
+                System.out.println("2. Borrar plato");
+                System.out.println("3. Salir");
+                
+                opcion= sc.nextInt();
+                switch (opcion) {
+                    case 1 -> {
+                        System.out.println("Qué quieres hacer?");
+                        System.out.println("1. Cambiar precio del plato");
+                        System.out.println("2. Cambiar nombre del plato");
+                        int opcion2= sc.nextInt();
+                        switch (opcion2) {
+                        case 1 ->{
+                            System.out.println("Introduce un nuevo precio");
+                            Double precioNuevo = sc.nextDouble();
+
+                            platoFinal.setPrecio(precioNuevo);
+                        }
+
+                        case 2 ->{
+                            System.out.println("Introduce un nuevo nombre");
+                            String nombreNuevo = sc.nextLine();
+                            sc.next();
+        
+                            platoFinal.setNombre(nombreNuevo);
+                            }
+                        
+                        }
+                    }
+
+                    case 2 -> {
+                       
+                        cartaPlatos.remove(platoFinal);
+                    }
+                    
+                    
+                }
+            }while(opcion!=3);
+  
+    }
 }
