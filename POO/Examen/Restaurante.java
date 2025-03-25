@@ -205,6 +205,102 @@ public class Restaurante {
         }
     }
 
-    
+
+    public Plato codigoToPlato(String codigo){
+        for(Plato plato : this.cartaPlatos){
+            if((plato.getCodigo().trim()).equals(codigo.trim())) return plato;
+        }
+        return null;
+    }
+
+    public void borrarModificarPlato(){
+        System.out.println("Estos son los platos disponibles: ");
+        for(Plato plato : this.cartaPlatos){
+            System.out.println(plato.getCodigo()+"      "+plato.getNombre()+"      "+plato.getPrecio()+"€");
+        }
+
+        String codigoElegido;
+        boolean encontrado = false;
+        do{
+            System.out.println("Introduce el codigo del plato que quieres borrar o modificar.");
+            codigoElegido = sc.nextLine();
+            sc.next();
+            for(Plato plato : this.cartaPlatos){
+                if(codigoElegido.equals(plato.getNombre())) encontrado = true;
+            }
+            if(!encontrado) System.out.println("Codigo no encontrado, intentalo de nuevo.");
+        }while(!encontrado);
+
+        int opcion;
+        do{
+            System.out.println("Que quieres hacer?\n0 - Cancelar\n1 - Borrar Plato\n2 - Modificar Plato");
+            opcion = sc.nextInt();
+            
+            if(opcion<0 || opcion>2) System.out.println("La opcion no esta en el rango especificado, prueba de nuevo.");
+        }while(opcion<0 || opcion>2);
+
+        switch (opcion) {
+            case 0 -> System.out.println(" OK, volviendo al menu.");
+            case 1 -> {
+                for(Plato plato : this.cartaPlatos){
+                    if(plato.getCodigo().equals(codigoElegido)){
+                        this.cartaPlatos.remove(codigoToPlato(codigoElegido));
+                        System.out.println("Plato borrado con exito!");
+                    }
+                }
+            }
+            default -> {
+                String newNombre = null;
+                Double newPrecio = null;
+                boolean continuar;
+                System.out.println("El nombre actual del plato es: " + codigoToPlato(codigoElegido).getNombre()+"\nQuieres Cambiarlo? (1- Si / 2- No)");
+                do{
+                    switch(sc.nextInt()){
+                        case 1 -> {
+                            System.out.println("Introduce el nuevo nombre.");
+                            newNombre = sc.nextLine();
+                            sc.next();
+                            continuar = true;
+                        }
+                        case 2 -> {
+                            newNombre = codigoToPlato(codigoElegido).getNombre();
+                            continuar = true;
+                        }
+                        default -> continuar = false;
+                    }
+                    
+                    if(!continuar) System.out.println("Introduce un numero que este en el rango especificado.");
+                }while(!continuar);
+                System.out.println("El precio actual del plato es: " + codigoToPlato(codigoElegido).getPrecio()+"\nQuieres Cambiarlo? (1- Si / 2- No)");
+                do{
+                    switch(sc.nextInt()){
+                        case 1 -> {
+                            do {
+                                System.out.println("Introduce el nuevo precio.");
+                                newPrecio = sc.nextDouble();
+                                if(newPrecio < 0) System.out.println("El precio tiene que ser mayor que 0.");
+                            } while (newPrecio < 0);
+                            continuar = true;
+                        }
+                        case 2 -> {
+                            newPrecio = codigoToPlato(codigoElegido).getPrecio();
+                            continuar = true;
+                        }
+                        default -> continuar = false;
+                    }
+                    
+                    if(!continuar) System.out.println("Introduce un numero que este en el rango especificado.");
+                }while(!continuar);
+                for(Plato plato : this.cartaPlatos){
+                    if(plato.getCodigo().equals(codigoElegido)){
+                        this.cartaPlatos.remove(codigoToPlato(codigoElegido));
+                    }
+                }   Plato platoModificado = new Plato(codigoElegido, newNombre, newPrecio);
+                this.cartaPlatos.add(platoModificado);
+                System.out.println("Plato añadido con exito");
+            }
+        }
+
+    }
 
 }
