@@ -156,73 +156,68 @@ public class Restaurante {
         return null;
     }
 
-    public void modificarPlatoCarta() {
-        int opcion;
-        do {        
-            System.out.println("Que quieres hacer?:");
-            System.out.println("1. Modificar plato.");
-            System.out.println("2. Eliminar plato.");
+    public void menuModificarPlato() {
+        Plato plato = this.platoByCodigo();
+        int decision;
+
+        do { 
+            System.out.println("¿Qué desea hacer?");
+            System.out.println("1. Cambiar el plato");
+            System.out.println("2. Borrar el plato");
+            System.out.println("3. Salir");
+
+            System.out.println("Introduzca una opcion: ");
+
+            decision = sc.nextInt();
             
-            opcion = sc.nextInt();
-        } while (opcion != 3);
+        } while (decision != 3);
 
-        switch (opcion) {
+        switch(decision) {
             case 1 -> {
-                System.out.println("Introduce un código de plato: ");
-                String codigo = sc.next();
-                for (Plato plato : this.cartaPlatos) {
-                    if (codigo.equals(plato.getCodigo())) {
-                        int subopcion;
+                int subopcion;
 
-                        do {        
-                            System.out.println("Que quieres hacer?:");
-                            System.out.println("1. Modificar código del plato.");
-                            System.out.println("2. Modificar nombre del plato.");
-                            System.out.println("3. Modificar precio del plato.");
-                            
-                            
-                            subopcion = sc.nextInt();
-                        } while (subopcion != 4);
+               
+                System.out.println("¿Que desea modificar?");
+                System.out.println("1. Código");
+                System.out.println("2. Nombre");
+                System.out.println("3. Precio");
+                System.out.println("4. Salir");
+                System.out.println("Introduzca su opcion");
 
-                        switch (subopcion) {
-                            case 1 -> {
-                                System.out.println("Introduce el nuevo código: ");
-                                String nuevoCodigo = sc.next();
-                                plato.setCodigo(nuevoCodigo);
-                            }
-                            case 2 -> {
-                                System.out.println("Introduce el nuevo nombre: ");
-                                String nuevoNombre = sc.next();
-                                plato.setNombre(nuevoNombre);
-                            }
-                            case 3 -> {
-                                System.out.println("Introduce el nuevo precio: ");
-                                double nuevoPrecio = sc.nextDouble();
-                                plato.setPrecio(nuevoPrecio);
-                            }   
-                        }
-                    }
-                    System.out.println("Introduce un número válido");
+                subopcion = sc.nextInt();
+                    
+                
+
+                switch(subopcion){
+                    case 1 -> {
+                        System.out.println("¿Qué codigo nuevo deseas incorporar?");
+                        String codigo = sc.nextLine();sc.next();
+                        plato.setCodigo(codigo);
+                        System.out.println("Codigo cambiado correctamente");
+                    } 
+                    case 2 -> {
+                        System.out.println("¿Qué nombre nuevo deseas incorporar?");
+                        String nombre = sc.nextLine();sc.next();
+                        plato.setNombre(nombre);
+                        System.out.println("Nombre cambiado correctamente");
+                    } 
+                    case 3 -> {
+                        System.out.println("¿Qué codigo nuevo deseas incorporar?");
+                        double precio = sc.nextDouble();
+                        plato.setPrecio(precio);
+                        System.out.println("Precio cambiado correctamente");
+                    } 
                 }
+
             }
-            case 2 -> { 
-                if (!this.cartaPlatos.isEmpty()) {
-                    do {
-                        System.out.println("Introduce un código de plato: ");
-                        String codigo = sc.next();
-                        for (Plato plato : this.cartaPlatos) {
-                            if (codigo.equals(plato.getCodigo())) {
-                                this.cartaPlatos.remove(plato);
-                                System.out.println("Plato borrado correctamente");
-                                
-                            }
-                        }
-                        System.out.println("Introduce un número válido");
-                    } while (true);
         
-                }                
+            case 2 -> {
+                this.cartaPlatos.remove(plato);
+                System.out.println("Plato eliminado correctamente");
             }
         }
+            
+
 
     }
 
@@ -273,6 +268,11 @@ public class Restaurante {
                 System.out.println("Pedido borrado correctamente");
             }
         }
+    }
+
+    public LinkedList<Object>[] getDatos() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getDatos'");
     }
 
 }
