@@ -6,20 +6,20 @@ public class Restaurante {
     Scanner sc = new Scanner(System.in);
 
     // Atributos Restaurante
-    LinkedList<Mesa> mesas = new LinkedList<>();  
+    LinkedList<Mesa> mesas = new LinkedList<>();
     LinkedList<Plato> cartaPlatos = new LinkedList<>();
     LinkedList<Pedido> pedidos = new LinkedList<>();
-    
+
     public void registrarMesa() {
         int numeroMesa;
         int capacidad;
 
-        do { 
+        do {
             System.out.println("Ingresa un número de mesa: ");
             numeroMesa = sc.nextInt();
         } while (numeroMesa <= 0);
 
-        do { 
+        do {
             System.out.println("Ingresa la capacidad de la mesa: ");
             capacidad = sc.nextInt();
         } while (capacidad <= 0);
@@ -28,7 +28,7 @@ public class Restaurante {
         mesas.add(mesa);
 
         System.out.println("Mesa creada correctamente!");
-        
+
     }
 
     private Plato crearPlato() {
@@ -44,7 +44,7 @@ public class Restaurante {
         nombrePlato = sc.nextLine();
         sc.next();
 
-        do { 
+        do {
             System.out.println("Ingresa un precio del plato: ");
             precioPlato = sc.nextDouble();
         } while (precioPlato <= 0);
@@ -54,7 +54,7 @@ public class Restaurante {
     }
 
     public void registrarPlatoCarta() {
-        
+
         Plato plato = this.crearPlato();
 
         this.cartaPlatos.add(plato);
@@ -65,7 +65,7 @@ public class Restaurante {
     public void registrarPedido() {
         Mesa mesaEncontrada = null;
         int numeroMesa;
-        do { 
+        do {
             System.out.println("Introduce el número de una mesa existente: ");
             numeroMesa = sc.nextInt();
             for (Mesa mesa : this.mesas) {
@@ -83,12 +83,12 @@ public class Restaurante {
         String codigo;
         boolean terminar = false;
 
-        while(!terminar) {
+        while (!terminar) {
             System.out.println("Introduce el código de los platos: ");
             System.out.println("Si se introduce un 0, parará de preguntar: ");
             codigo = sc.next();
 
-            if(codigo.equals("0")) {
+            if (codigo.equals("0")) {
                 terminar = true;
             } else {
                 for (Plato plato : this.cartaPlatos) {
@@ -99,7 +99,7 @@ public class Restaurante {
                 }
             }
         }
-        
+
         Pedido pedido = new Pedido(mesaEncontrada, listaPlatosPedidos);
         pedidos.add(pedido);
         System.out.println("Pedido añadido correctamente");
@@ -125,16 +125,17 @@ public class Restaurante {
     private Plato platoByCodigo() {
         String codigo;
         if (!this.cartaPlatos.isEmpty()) {
-            do{
+            do {
                 System.out.println("Introduce un código de un plato de la carta: ");
-                codigo = sc.nextLine();sc.next();
+                codigo = sc.nextLine();
+                sc.next();
                 for (Plato plato : this.cartaPlatos) {
-                    if(plato.getCodigo().equals(codigo)) {
+                    if (plato.getCodigo().equals(codigo)) {
                         return plato;
                     }
                 }
                 System.out.println("No se ha encontrado el plato.");
-            } while(true);
+            } while (true);
         }
         return null;
     }
@@ -142,7 +143,7 @@ public class Restaurante {
     private Mesa mesaByNumber() {
         int numero;
         if (!this.mesas.isEmpty()) {
-            do { 
+            do {
                 System.out.println("Introduce el número de la nueva mesa: ");
                 numero = sc.nextInt();
                 for (Mesa mesa : this.mesas) {
@@ -159,7 +160,7 @@ public class Restaurante {
     public void menuModificarPedido() {
         Pedido pedido = this.getPedidoNumeroMesa();
         int opcion;
-        do {        
+        do {
             System.out.println("Que quieres hacer?:");
             System.out.println("1. Cambiar estado (Completado/No Completado).");
             System.out.println("2. Añadir Plato.");
@@ -178,16 +179,18 @@ public class Restaurante {
                 System.out.println("1. Nuevo Plato");
                 System.out.println("2. Añadir Plato desde Carta");
                 int subopcion = sc.nextInt();
-                switch(subopcion) {
-                    case 1 -> pedido.addPlato(this.crearPlato()); 
-                    case 2 -> pedido.addPlato(this.platoByCodigo()); 
+                switch (subopcion) {
+                    case 1 -> pedido.addPlato(this.crearPlato());
+                    case 2 -> pedido.addPlato(this.platoByCodigo());
                 }
             }
             case 3 -> {
-                String codigo; Boolean control;
+                String codigo;
+                Boolean control;
                 do {
                     System.out.println("Introduce un código de un plato: ");
-                    codigo = sc.nextLine();sc.next();
+                    codigo = sc.nextLine();
+                    sc.next();
                     control = pedido.removePlato(codigo);
                     if (control) {
                         System.out.println("Se ha borrado el plato.");
@@ -205,6 +208,54 @@ public class Restaurante {
         }
     }
 
-    
+    public void modificarBorrarPlato() {
+        System.out.println("Pulsa 1 para modificar un plato o 2 para borrarlo");
+        int opcion = sc.nextInt();
+
+        switch (opcion) {
+            case 1 -> {
+                System.out.println("Qué quieres modificar?");
+                System.out.println("1. Nombre del plato");
+                System.out.println("2. Precio del plato");
+
+                int opcionModificar = sc.nextInt();
+                int opcionPlato = sc.nextInt();
+
+                switch (opcionModificar) {
+                    case 1 -> {
+                        System.out.println("Qué plato quieres modificar?");
+
+                        for (Plato plato : cartaPlatos) {
+                            System.out.println(plato);
+                        }
+
+                        Plato elegirPlato = cartaPlatos.get(opcionPlato);
+
+                        System.out.println("Qué nombre le quieres poner al plato?");
+                        String nuevoNombre = sc.nextLine();
+                        sc.next();
+                        elegirPlato.setNombre(nuevoNombre);
+
+                        for (Plato plato : cartaPlatos) {
+                            System.out.println(plato);
+
+                        }
+                    }
+                }
+
+            }
+
+            case 2 -> {
+                System.out.println("Que plato quieres borrar?");
+
+                for (Plato plato : this.cartaPlatos) {
+                    System.out.println(plato);
+                }
+                int opcionBorrar = sc.nextInt();
+                cartaPlatos.remove(opcionBorrar);
+                System.out.println("Plato borrado exitosamente");
+            }
+        }
+    }
 
 }
