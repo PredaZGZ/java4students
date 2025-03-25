@@ -205,6 +205,133 @@ public class Restaurante {
         }
     }
 
-    
+    public void menuGestionPlatos() {
+        int opcion;
+        do {
+            System.out.println("--- GESTIÓN DE PLATOS ---");
+            System.out.println("1. Modificar plato");
+            System.out.println("2. Borrar plato");
+            System.out.println("3. Volver al menú principal");
+            System.out.print("Seleccione una opción: ");
+            opcion = sc.nextInt();
+            sc.nextLine(); 
 
+            switch (opcion) {
+                case 1 -> modificarPlato();
+                case 2 -> borrarPlato();
+                case 3 -> System.out.println("Volviendo al menú principal...");
+                default -> System.out.println("Opción no válida. Intente nuevamente.");
+            }
+        } while (opcion != 3);
+    }
+
+    private void modificarPlato() {
+        if (cartaPlatos.isEmpty()) {
+            System.out.println("No hay platos en la carta.");
+            return;
+        }
+
+        System.out.println("--- MODIFICAR PLATO ---");
+        mostrarPlatos();
+        
+        System.out.print("Ingrese el código del plato a modificar: ");
+        String codigo = sc.nextLine();
+
+        Plato plato = buscarPlatoPorCodigo(codigo);
+        if (plato == null) {
+            System.out.println("No se encontró un plato con ese código.");
+            return;
+        }
+
+        System.out.println("\nPlato seleccionado:");
+        System.out.println(plato);
+
+        int opcion;
+        do {
+            System.out.println("¿Qué desea modificar?");
+            System.out.println("1. Nombre");
+            System.out.println("2. Precio");
+            System.out.println("3. Cancelar");
+            System.out.print("Seleccione una opción: ");
+            opcion = sc.nextInt();
+            sc.nextLine(); 
+
+            switch (opcion) {
+                case 1 -> modificarNombre(plato);
+                case 2 -> modificarPrecio(plato);
+                case 3 -> System.out.println("Modificación cancelada.");
+                default -> System.out.println("Opción no válida. Intente nuevamente.");
+            }
+        } while (opcion != 3);
+    }
+
+    private void modificarNombre(Plato plato) {
+        System.out.print("Ingrese el nuevo nombre: ");
+        String nuevoNombre = sc.nextLine();
+        
+        
+    }
+
+    private void modificarPrecio(Plato plato) {
+        System.out.print("Ingrese el nuevo precio: ");
+        double nuevoPrecio;
+        
+       
+            nuevoPrecio = sc.nextDouble();
+            sc.nextLine(); 
+            
+            if (nuevoPrecio <= 0) {
+                System.out.println("El precio debe ser mayor que cero.");
+                
+            }
+            
+       
+    }
+
+    private void borrarPlato() {
+        if (cartaPlatos.isEmpty()) {
+            System.out.println("No hay platos en la carta.");
+            return;
+        }
+
+        System.out.println("--- BORRAR PLATO ---");
+        mostrarPlatos();
+        
+        System.out.print("Ingrese el código del plato a borrar: ");
+        String codigo = sc.nextLine();
+
+        Plato plato = buscarPlatoPorCodigo(codigo);
+        if (plato == null) {
+            System.out.println("No se encontró un plato con ese código.");
+            return;
+        }
+
+        System.out.println("Plato seleccionado para borrar:");
+        System.out.println(plato);
+
+
+        cartaPlatos.remove(plato);
+    }
+    private Plato buscarPlatoPorCodigo(String codigo) {
+        for (Plato plato : cartaPlatos) {
+            if (plato.getCodigo().equalsIgnoreCase(codigo)) {
+                return plato;
+            }
+        }
+        return null;
+    }
+
+    private void mostrarPlatos() {
+        if (cartaPlatos.isEmpty()) {
+            System.out.println("No hay platos en la carta.");
+            return;
+        }
+
+        System.out.println("LISTA DE PLATOS:");
+        for (Plato plato : cartaPlatos) {
+            System.out.println(plato);
+        }
+    }
 }
+
+
