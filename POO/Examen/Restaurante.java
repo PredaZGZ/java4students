@@ -39,11 +39,11 @@ public class Restaurante {
 
         System.out.println("Ingresa un código del plato: ");
         codigoPlato = sc.nextLine();
-        sc.next();
+        
 
         System.out.println("Ingresa un nombre del plato: ");
         nombrePlato = sc.nextLine();
-        sc.next();
+        
 
         do { 
             System.out.println("Ingresa un precio del plato: ");
