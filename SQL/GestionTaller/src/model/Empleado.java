@@ -1,21 +1,17 @@
 package model;
 
-public class Cliente {
+import java.sql.Date;
+
+public class Empleado {
     private int id;
     private String nombre;
-    private String apellido;
     private String telefono;
     private String email;
+    private String puesto;
+    private double salario;
+    private Date fechaContratacion;
 
-    public Cliente() {
-    }
-
-    public Cliente(String nombre, String apellido, String telefono, String email) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.telefono = telefono;
-        this.email = email;
-    }
+    // Getters y Setters
 
     public int getId() {
         return id;
@@ -33,14 +29,6 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
     public String getTelefono() {
         return telefono;
     }
@@ -48,7 +36,7 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
+
     public String getEmail() {
         return email;
     }
@@ -56,16 +44,41 @@ public class Cliente {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
+    public String getPuesto() {
+        return puesto;
+    }
+
+    public void setPuesto(String puesto) {
+        this.puesto = puesto;
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        this.salario = salario;
+    }
+
+    public Date getFechaContratacion() {
+        return fechaContratacion;
+    }
+
+    public void setFechaContratacion(Date fechaContratacion) {
+        this.fechaContratacion = fechaContratacion;
+    }
 
     @Override
     public String toString() {
-        return "Cliente{" +
+        return "Empleado{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", email='" + email + '\'' +
+                ", puesto='" + puesto + '\'' +
+                ", salario=" + salario +
+                ", fechaContratacion=" + fechaContratacion +
                 '}';
     }
 }

@@ -1,21 +1,12 @@
 package model;
 
-public class Cliente {
+public class Proveedor {
     private int id;
     private String nombre;
-    private String apellido;
     private String telefono;
     private String email;
 
-    public Cliente() {
-    }
-
-    public Cliente(String nombre, String apellido, String telefono, String email) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.telefono = telefono;
-        this.email = email;
-    }
+    // Getters y Setters
 
     public int getId() {
         return id;
@@ -33,14 +24,6 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
     public String getTelefono() {
         return telefono;
     }
@@ -48,7 +31,7 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
+
     public String getEmail() {
         return email;
     }
@@ -56,14 +39,12 @@ public class Cliente {
     public void setEmail(String email) {
         this.email = email;
     }
-    
 
     @Override
     public String toString() {
-        return "Cliente{" +
+        return "Proveedor{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", email='" + email + '\'' +
                 '}';
